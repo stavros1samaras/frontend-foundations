@@ -1,7 +1,5 @@
 # Re-writing history
 
-### Fix your last commit comment
-
 Modifies the most recent commit (e.g., to change its message or include missed files).
 
 | `git commit --amend` | Opens the editor to modify the last commit message or include newly staged files. | `git commit --amend` |
