@@ -22,3 +22,5 @@ a---b---c---d  branch 'master' (refers to commit 'd')
 To go to previous situation type 
 `git checkout -
 `
+OR
+`git switch master`
