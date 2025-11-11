@@ -1,11 +1,11 @@
-URIs, URLs, and URNs
+# URIs, URLs, and URNs
 
 ## URI (Uniform Resource Identifier)
 - Identifies a specific web resource
 - Can identify by location, name, or both
 - Two types: **URL** and **URN**
 
-## URL (Uniform Resource Locator)
+## ⭐ URL (Uniform Resource Locator)
 - Most common type of URI
 - Identifies the **location** of a resource
 - Components:
