@@ -44,3 +44,25 @@ Updates installed packages to the latest versions that satisfy the version range
 | `npm update --global` | Updates globally installed packages. | `npm update -g nodemon` |
 | `npm outdated` | Shows which packages are outdated before updating. | `npm outdated` |
 | `npm update [package-name]@latest` | Updates a package to the **latest version available**, ignoring the version range in `package.json`. | `npm update react@latest` |
+
+# Common npm Scripts
+
+Command  | Description | Example
+---------|-------------|--------
+npm start  | ⭐ Runs the "start" script from package.json. Usually used to start the app in production mode. | npm start
+npm run dev  | ⭐ Runs the "dev" script from package.json. Used for development mode with hot reload. | npm run dev
+npm run build  | ⭐ Runs the "build" script. Usually creates an optimized production bundle. | npm run build
+npm run preview  | Serves the built production files locally for preview/testing. | npm run preview
+npm test  | Runs the "test" script. Usually runs unit tests. | npm test
+npm run lint  | Runs code linting using ESLint or similar tools. | npm run lint
+npm run format  | Formats code using Prettier or similar tools. | npm run format
+npm run clean  | Cleans build directories (e.g., dist/ or build/). | npm run clean
+npm run typecheck  | Checks TypeScript types without emitting code. | npm run typecheck
+npm run ci  | Custom script for CI/CD pipelines (install, build, test, lint). | npm run ci
+npm run e2e  | Runs end-to-end tests (e.g., Cypress, Playwright). | npm run e2e
+npm run analyze  | Analyzes bundle size or other metrics. | npm run analyze
+npm run storybook  | Runs Storybook for UI component development. | npm run storybook
+npm run prebuild  | Lifecycle script that runs before "build". | npm run prebuild
+npm run postbuild  | Lifecycle script that runs after "build". | npm run postbuild
+npm run prepare  | Lifecycle script that runs before publishing a package. | npm run prepare
+
