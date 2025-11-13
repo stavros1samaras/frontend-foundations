@@ -10,8 +10,6 @@
   2. **Headers block**  
   3. **Optional body (entity body)**
 
----
-
 ## HTTP Request Message
 ```
 STRUCTURE                                                    EXAMPLE
@@ -41,16 +39,7 @@ Accept: text/html
 
 - **Entity Body (optional)** – data sent to the server, e.g., login credentials, file uploads.
 
-
----
-
 ## HTTP Response Message
-- **Start Line** – contains:
-  - **HTTP version**  
-  - **Status code** (3-digit number indicating request result, e.g., 200, 404)  
-  - **Reason phrase** (human-readable description of the status code)  
-- **Headers Block** – metadata about the response, e.g., content type, caching, server info.  
-- **Entity Body (optional)** – the content returned by the server, e.g., HTML page, JSON data.
 
 ```
 STRUCTURE                                                    EXAMPLE
@@ -62,7 +51,12 @@ ___________________________________________________________________  ___________
 |  Entity Body   |<Optional-Body>                                 |  |  Accept: text/html         |
 ———————————————————————————————————————————————————————————————————  ——————————————————————————————
 ```
----
+
+- **Start Line** – contains:
+  - **HTTP version**  
+  - **Status code** (3-digit number indicating request result, e.g., 200, 404)  
+  - **Reason phrase** (human-readable description of the status code)  
+- **Headers Block** – metadata about the response, e.g., content type, caching, server info.
 
 | **Header-Name** | **Header-Value** |
 |------------------|------------------|
@@ -70,13 +64,10 @@ ___________________________________________________________________  ___________
 | Accept | application/json |
 | ... | ... |
 
+- **Entity Body (optional)** – the content returned by the server, e.g., HTML page, JSON data.
+
 ## Key Notes
 - Not all headers are used by both requests and responses.  
-- In command-line testing with `curl`:
-  - `>` indicates parts of the **HTTP request**  
-  - `<` indicates parts of the **HTTP response**  
-
----
 
 ## Summary
 - HTTP messages are structured to ensure **clear communication** between clients and servers.  
