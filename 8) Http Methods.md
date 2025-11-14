@@ -5,34 +5,50 @@ HTTP methods define **what action the client wants the server to perform** on a 
 
 ## Main HTTP Methods
 
+| HTTP Method | Purpose                                     | Body Allowed | Typical Use Case                         |
+|-------------|----------------------------------------------|--------------|--------------------------------------------|
+| GET         | Request data from a resource                 | No           | Fetching pages, fetching API data          |
+| POST        | Send data to the server (create resource)    | Yes          | Creating users, forms, uploads             |
+| PUT         | Fully replace an existing resource           | Yes          | Full updates (overwrite)                   |
+| DELETE      | Delete the specified resource                | Sometimes    | Removing users, items, posts               |
+| HEAD        | Same as GET but without response body        | No           | Check metadata (size, last-modified)       |
+| PATCH       | Partially update a resource                  | Yes          | Update single fields of a resource         |
+| OPTIONS     | Returns allowed methods / CORS info          | No           | Preflight requests, CORS checks            |
+
+
 ### GET
-- Used to **request data** from a resource.
-- Does **not** modify anything.
-- Common for loading pages.
+```bash
+GET /users/123 HTTP/1.1
+Host: api.example.com
+```
+```bash
+curl -v https://api.example.com/users/123
+```
+
 
 ### POST
-- Used to **send data** to the server.
-- Usually for **creating** a new resource.
-- Contains a request body.
-
-### PUT
-- **Replaces** an existing resource entirely.
-- Full update.
-
+```bash
+POST /users HTTP/1.1
+Host: api.example.com
+Content-Type: application/json
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com"
+}
+```
+```bash
+curl -v -X POST https://api.example.com/users \
+  -H "Content-Type: application/json" \
+  -d '{"name":"John Doe","email":"john.doe@example.com"}'
+```
 ### DELETE
-- Deletes the specified resource.
-
-### HEAD
-- Same as GET **but without the response body**.
-- Used to check metadata (e.g., size, last-modified).
-
-### PATCH
-- **Partially updates** a resource.
-- Contains a request body.
-
-### OPTIONS
-- Returns the communication options and supported methods for a resource.
-- Used heavily in **CORS**.
+```bash
+DELETE /users/123 HTTP/1.1
+Host: api.example.com
+```
+```bash
+curl -v -X DELETE https://api.example.com/users/123
+```
 
 
 ## Important Notes
