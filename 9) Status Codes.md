@@ -1,4 +1,5 @@
 # HTTP Status Codes
+Docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
 
 HTTP status codes describe **how the server responded** to an HTTP request.  
 They are grouped by the **first digit**.
