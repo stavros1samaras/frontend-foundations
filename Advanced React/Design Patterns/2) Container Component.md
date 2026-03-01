@@ -165,3 +165,77 @@ export const BookInfo = ({ book }) => {
     </div>
   );
 };
+```
+
+
+## ⚙️ More generic example
+
+```jsx
+import React, { useState, useEffect } from "react";
+
+/* ---------- App ---------- */
+function App() {
+  return (
+    <>
+      <DataSource getData={() => fetchData("/users/1")} resourceName="user">
+        <UserInfo />
+      </DataSource>
+
+      <DataSource getData={() => getFromLocalStorage("test")} resourceName="msg">
+        <Message />
+      </DataSource>
+    </>
+  );
+}
+
+export default App;
+
+/* ---------- Container Component ---------- */
+export const DataSource = ({ getData = () => {}, resourceName, children }) => {
+  const [resource, setResource] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const data = await getData();
+      setResource(data);
+    })();
+  }, [getData]);
+
+  return (
+    <>
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, { [resourceName]: resource });
+        }
+        return child;
+      })}
+    </>
+  );
+};
+
+/* ---------- Fetch Functions ---------- */
+const fetchData = async (url) => {
+  const response = await fetch(url);
+  return await response.json();
+};
+
+const getFromLocalStorage = (key) => () => {
+  return localStorage.getItem(key);
+};
+
+/* ---------- Example Presentational Components (schematic) ---------- */
+export const UserInfo = ({ user }) => {
+  if (!user) return <p className="text-gray-500">Loading user…</p>;
+  return (
+    <div className="p-4 border rounded bg-gray-50">
+      <p>user.name: …</p>
+      <p>user.age: …</p>
+      <p>user.country: …</p>
+    </div>
+  );
+};
+
+export const Message = ({ msg }) => {
+  if (!msg) return <p className="text-gray-500">Loading message…</p>;
+  return <h1 className="text-lg font-medium">msg: …</h1>;
+};
