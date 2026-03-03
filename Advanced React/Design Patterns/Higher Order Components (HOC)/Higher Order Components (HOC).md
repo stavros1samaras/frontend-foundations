@@ -8,8 +8,6 @@ A **Higher Order Component (HOC)** is a **function that takes a component and re
 
 👉 In simple terms: *HOCs are functions that return components*
 
----
-
 ## 🤔 Why use HOCs?
 
 ### 1. Share behavior across components
@@ -20,7 +18,6 @@ A **Higher Order Component (HOC)** is a **function that takes a component and re
 - Enhance legacy or third-party components with new features without touching their original code.
 - Examples: logging, data fetching, authorization, styling wrappers.
 
----
 
 ## 🧠 Core Idea
 - Pass a component to a HOC
