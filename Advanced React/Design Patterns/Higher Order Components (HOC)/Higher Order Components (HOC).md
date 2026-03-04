@@ -1,30 +1,45 @@
-# 🧩 Higher Order Components (HOC) 
+# Higher-Order Component (HOC)
 
-## 📌 What is this?
-A **Higher Order Component (HOC)** is a **function that takes a component and returns a new, enhanced component**.
+📌 **What is this?**  
+The HOC pattern is a React technique where you take a component and "wrap" it in a function to add behavior or data. Instead of changing the component’s UI, the HOC adds logic and returns a new component.
 
-- You can think of HOCs as **component factories**: functions that generate new components when called.
-- They allow you to add extra functionality or share logic between multiple components without modifying the originals.
+🤔 **Why use it?**  
+- Allows reuse of logic without changing the UI  
+- Can add logging, validation, auth checks, analytics, etc.  
+- Keeps the UI clean and separates concerns  
+- Makes it easy to extend multiple components with the same behavior  
 
-👉 In simple terms: *HOCs are functions that return components*
+🧠 **Core Idea**  
+- Take a component as input  
+- Wrap the component in a function  
+- Add behavior or data  
+- Return a new component with the same UI but enhanced functionality  
 
-## 🤔 Why use HOCs?
-
-### 1. Share behavior across components
-- Similar to container components that wrap multiple components and give them shared behavior.
-- HOCs let you reuse logic for multiple components without duplicating code.
-
-### 2. Add functionality to existing components
-- Enhance legacy or third-party components with new features without touching their original code.
-- Examples: logging, data fetching, authorization, styling wrappers.
-
-
-## 🧠 Core Idea
-- Pass a component to a HOC
-- The HOC returns a **new component** that:
-  - wraps the original component
-  - adds additional behavior
-  - passes through props
+⚙️ **Example**
 
 ```jsx
-const EnhancedComponent = withExtraBehavior(OriginalComponent);
+import { checkProps } from "./components/check-props";
+import { UserInfo } from "./components/user-info";
+
+/* ---------- Wrap Component with HOC ---------- */
+const UserInfoWrapper = checkProps(UserInfo);
+
+/* ---------- App ---------- */
+function App() {
+  return (
+    <>
+      <UserInfoWrapper propA="test1" blabla={{ a: 1, age: 23 }} />
+    </>
+  );
+}
+
+export default App;
+
+/* ---------- Generic HOC Function ---------- */
+export const checkProps = (Component) => {
+  return (props) => {
+    console.log(props); // added behavior
+    return <Component {...props} />; // returns the original component with props
+  };
+};
+```
