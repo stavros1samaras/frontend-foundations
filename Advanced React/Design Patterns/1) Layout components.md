@@ -31,29 +31,9 @@ This makes the layout reusable across different use cases.
 
 ## ⚙️ Example
 
-```jsx
-import React from "react";
-
-/* ---------- Left Component ---------- */
-const LeftSideComp = ({ title }) => {
-  return (
-    <h2 className="bg-red-600 text-white p-4">
-      {title}
-    </h2>
-  );
-};
-
-/* ---------- Right Component ---------- */
-const RightSideComp = ({ title }) => {
-  return (
-    <h2 className="bg-yellow-300 p-4">
-      {title}
-    </h2>
-  );
-};
-
-/* ---------- App ---------- */
-function App() {
+### App.jsx
+``` jsx
+export default function App() {
   return (
     <SplitScreen leftWidth={1} rightWidth={3}>
       <LeftSideComp title="Right" />
@@ -61,10 +41,9 @@ function App() {
     </SplitScreen>
   );
 }
-
-export default App;
-
-/* ---------- SplitScreen Layout Component ---------- */
+```
+### SplitScreen.jsx
+```jsx
 const SplitScreen = ({ children, leftWidth = 1, rightWidth = 1 }) => {
   const [left, right] = children;
 
@@ -80,12 +59,55 @@ const SplitScreen = ({ children, leftWidth = 1, rightWidth = 1 }) => {
   );
 };
 ```
+### Secondary.jsx
+```jsx
+const LeftSideComp = ({ title }) => {
+  return (
+    <h2 className="bg-red-600 text-white p-4">
+      {title}
+    </h2>
+  );
+};
+
+const RightSideComp = ({ title }) => {
+  return (
+    <h2 className="bg-yellow-300 p-4">
+      {title}
+    </h2>
+  );
+};
+```
 
 ## ⚙️ Example
 
+### App.jsx
 ```jsx
-import React from "react";
+/* ---------- Example App Usage ---------- */
+function export default App() {
+  const books = [
+    { name: "To Kill a Mockingbird", pages: 281, title: "Harper Lee", price: 12.99 },
+    { name: "The Catcher in the Rye", pages: 224, title: "J.D. Salinger", price: 9.99 },
+    { name: "The Little Prince", pages: 85, title: "Antoine de Saint-Exupéry", price: 7.99 },
+  ];
 
+  const authors = [
+    { name: "Sarah Waters", age: 55, country: "UK", books: ["Fingersmith", "The Night Watch"] },
+    { name: "Haruki Murakami", age: 71, country: "Japan", books: ["Norwegian Wood", "Kafka on the Shore"] },
+    { name: "Chimamanda Ngozi Adichie", age: 43, country: "Nigeria", books: ["Half of a Yellow Sun", "Americanah"] },
+  ];
+
+  return (
+    <>
+      <RegularList items={authors} ItemComponent={SmallAuthorItem} itemPropName="author" />
+      <NumberedList items={authors} ItemComponent={LargeAuthorItem} itemPropName="author" />
+      <RegularList items={books} ItemComponent={SmallBookItem} itemPropName="book" />
+      <NumberedList items={books} ItemComponent={LargeBookItem} itemPropName="book" />
+    </>
+  );
+}
+```
+### Secondary.jsx
+```jsx
 /* ---------- Generic List Components ---------- */
 export const RegularList = ({ items, ItemComponent, itemPropName }) => {
   return (
@@ -149,40 +171,22 @@ export const LargeAuthorItem = ({ author }) => {
     </>
   );
 };
-
-/* ---------- Example App Usage ---------- */
-function App() {
-  const books = [
-    { name: "To Kill a Mockingbird", pages: 281, title: "Harper Lee", price: 12.99 },
-    { name: "The Catcher in the Rye", pages: 224, title: "J.D. Salinger", price: 9.99 },
-    { name: "The Little Prince", pages: 85, title: "Antoine de Saint-Exupéry", price: 7.99 },
-  ];
-
-  const authors = [
-    { name: "Sarah Waters", age: 55, country: "UK", books: ["Fingersmith", "The Night Watch"] },
-    { name: "Haruki Murakami", age: 71, country: "Japan", books: ["Norwegian Wood", "Kafka on the Shore"] },
-    { name: "Chimamanda Ngozi Adichie", age: 43, country: "Nigeria", books: ["Half of a Yellow Sun", "Americanah"] },
-  ];
-
-  return (
-    <>
-      <RegularList items={authors} ItemComponent={SmallAuthorItem} itemPropName="author" />
-      <NumberedList items={authors} ItemComponent={LargeAuthorItem} itemPropName="author" />
-      <RegularList items={books} ItemComponent={SmallBookItem} itemPropName="book" />
-      <NumberedList items={books} ItemComponent={LargeBookItem} itemPropName="book" />
-    </>
-  );
-}
-
-export default App;
 ```
 
+
 ## ⚙️ Example
-
+### App.jsx
 ```jsx
-import React, { useState } from "react";
-
-/* ---------- Generic Modal Component ---------- */
+export default function App() {
+  return (
+    <Modal>
+      <ExampleContent />
+    </Modal>
+  );
+}
+```
+### Modal.jsx
+```jsx
 export const Modal = ({ children }) => {
   const [show, setShow] = useState(false);
 
@@ -217,19 +221,9 @@ export const Modal = ({ children }) => {
     </>
   );
 };
-
-/* ---------- Example Content Component ---------- */
+```
+### Content.jsx
+```jsx
 export const ExampleContent = () => {
   return <h2 className="text-xl font-semibold">This is some modal content</h2>;
 };
-
-/* ---------- App ---------- */
-function App() {
-  return (
-    <Modal>
-      <ExampleContent />
-    </Modal>
-  );
-}
-
-export default App;
