@@ -43,7 +43,7 @@ export default function App() {
 }
 ```
 ### SplitScreen.jsx
-```jsx
+``` jsx
 const SplitScreen = ({ children, leftWidth = 1, rightWidth = 1 }) => {
   const [left, right] = children;
 
@@ -60,7 +60,7 @@ const SplitScreen = ({ children, leftWidth = 1, rightWidth = 1 }) => {
 };
 ```
 ### Secondary.jsx
-```jsx
+``` jsx
 const LeftSideComp = ({ title }) => {
   return (
     <h2 className="bg-red-600 text-white p-4">
@@ -81,7 +81,7 @@ const RightSideComp = ({ title }) => {
 ## ⚙️ Example
 
 ### App.jsx
-```jsx
+``` jsx
 /* ---------- Example App Usage ---------- */
 function export default App() {
   const books = [
@@ -107,7 +107,7 @@ function export default App() {
 }
 ```
 ### Secondary.jsx
-```jsx
+``` jsx
 /* ---------- Generic List Components ---------- */
 export const RegularList = ({ items, ItemComponent, itemPropName }) => {
   return (
@@ -176,7 +176,7 @@ export const LargeAuthorItem = ({ author }) => {
 
 ## ⚙️ Example
 ### App.jsx
-```jsx
+``` jsx
 export default function App() {
   return (
     <Modal>
@@ -186,7 +186,7 @@ export default function App() {
 }
 ```
 ### Modal.jsx
-```jsx
+``` jsx
 export const Modal = ({ children }) => {
   const [show, setShow] = useState(false);
 
