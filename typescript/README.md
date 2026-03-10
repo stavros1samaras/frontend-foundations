@@ -1,7 +1,5 @@
 # TypeScript - Comprehensive Guide
 
-## Core Concepts
-
 ## Data Types
 
 #### Primitive Types
@@ -179,6 +177,17 @@ enum Mixed {
 const answer: Mixed = Mixed.Yes;
 ```
 
+### Generics
+```ts
+type Box<T> = {
+  value: T;
+};
+
+const a: Box<number> = { value: 10 };
+const b: Box<string> = { value: "hello" };
+```
+
+
 ## Functions
 
 ### Basic Function Types
@@ -252,8 +261,6 @@ class Dog extends Animal {
 
 const dog = new Dog("Alex", 5, "Golden Retriever");
 ```
-
-
 
 ## Advanced Types
 
