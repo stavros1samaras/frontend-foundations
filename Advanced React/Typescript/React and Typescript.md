@@ -176,3 +176,64 @@ function List<T>({ items, render }: ListProps<T>) {
   render={(item) => <div>{item * 2}</div>}
 />
 ```
+
+## React Event Handlers
+```typescript
+// Input/Change events
+///////////////////////////
+const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {};
+// ChangeEventHandler<HTMLInputElement> if import type { ChangeEventHandler } from "react";
+
+// Form events
+///////////////////////////
+const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {};
+// FormEventHandler<HTMLFormElement> if import type { FormEventHandler } from "react";
+
+// Mouse events
+///////////////////////////
+const handleMouseEnter: React.MouseEventHandler<HTMLDivElement> = (e) => {};
+// MouseEventHandler<HTMLDivElement> if import type { MouseEventHandler } from "react";
+
+const handleMouseLeave: React.MouseEventHandler<HTMLDivElement> = (e) => {};
+// MouseEventHandler<HTMLDivElement> if import type { MouseEventHandler } from "react";
+
+const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {};
+// MouseEventHandler<HTMLButtonElement> if import type { MouseEventHandler } from "react";
+
+const handleDoubleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {};
+// MouseEventHandler<HTMLButtonElement> if import type { MouseEventHandler } from "react";
+
+// Keyboard events
+///////////////////////////
+const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {};
+// KeyboardEventHandler<HTMLInputElement> if import type { KeyboardEventHandler } from "react";
+
+const handleKeyUp: React.KeyboardEventHandler<HTMLInputElement> = (e) => {};
+// KeyboardEventHandler<HTMLInputElement> if import type { KeyboardEventHandler } from "react";
+
+const handleKeyPress: React.KeyboardEventHandler<HTMLInputElement> = (e) => {};
+// KeyboardEventHandler<HTMLInputElement> if import type { KeyboardEventHandler } from "react";
+
+// Focus events
+///////////////////////////
+const handleFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {};
+// FocusEventHandler<HTMLInputElement> if import type { FocusEventHandler } from "react";
+
+const handleBlur: React.FocusEventHandler<HTMLInputElement> = (e) => {};
+// FocusEventHandler<HTMLInputElement> if import type { FocusEventHandler } from "react";
+
+// Select events
+///////////////////////////
+const handleSelectChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {};
+// ChangeEventHandler<HTMLSelectElement> if import type { ChangeEventHandler } from "react";
+
+// Touch events (mobile)
+///////////////////////////
+const handleTouchStart: React.TouchEventHandler<HTMLDivElement> = (e) => {};
+// TouchEventHandler<HTMLDivElement> if import type { TouchEventHandler } from "react";
+
+const handleTouchEnd: React.TouchEventHandler<HTMLDivElement> = (e) => {};
+// TouchEventHandler<HTMLDivElement> if import type { TouchEventHandler } from "react";
+
+const handleTouchMove: React.TouchEventHandler<HTMLDivElement> = (e) => {};
+// TouchEventHandler<HTMLDivElement> if import type { TouchEventHandler } from "react";
