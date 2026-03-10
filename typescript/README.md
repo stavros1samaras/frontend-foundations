@@ -88,7 +88,7 @@ const colorsTuple = ["red", "green", "blue"] as const;
 type Color = (typeof colorsTuple)[number]; // "red" | "green" | "blue"
 ```
 
----
+
 
 ## Objects and Structures
 
@@ -149,7 +149,7 @@ const userExtended: ExtendedUser = {
 };
 ```
 
----
+
 
 ### 3. Enums
 
@@ -253,7 +253,7 @@ class Dog extends Animal {
 const dog = new Dog("Alex", 5, "Golden Retriever");
 ```
 
----
+
 
 ## Advanced Types
 
