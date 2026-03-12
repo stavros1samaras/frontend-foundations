@@ -286,3 +286,186 @@ type UserWithoutEmail = Omit<User, "email">;
 type Permissions = Record<"read" | "write" | "delete", boolean>;
 const perms: Permissions = { read: true, write: true, delete: false };
 ```
+
+# TypeScript Utility Helpers
+
+## `keyof`
+
+Παίρνει **τα keys ενός object type** και δημιουργεί union type.
+
+```ts
+type ObjectType = {
+  key1: "a",
+  key2: "b"
+};
+
+type Result = keyof ObjectType;
+
+const test: Result = "key1"; 
+const wrong: Result = "key3"; // wrong
+```
+
+
+
+## Access Value Type From Object
+
+Μπορείς να πάρεις **τον τύπο της τιμής ενός συγκεκριμένου key**.
+
+```ts
+const obj = {
+  p0: "I am zero",
+  p1: "I am one"
+} as const;
+
+type Test0 = typeof obj["p0"];
+// "I am zero"
+
+const x: Test0 = "I am zero"; // ✅
+```
+
+
+
+## All Values From Object
+
+Παίρνει **όλες τις τιμές ενός object ως union type**.
+
+```ts
+const obj = {
+  a: "A",
+  b: "B",
+  c: "C"
+} as const;
+
+type Values = typeof obj[keyof typeof obj];
+// "A" | "B" | "C"
+```
+
+
+
+## Union (`|`)
+
+Συνδυάζει τύπους.
+
+```ts
+type Set1 = "A" | "B" | "C";
+type Set2 = "B" | "C" | "D";
+
+type UnionType = Set1 | Set2;
+// "A" | "B" | "C" | "D"
+```
+
+
+
+## Intersection (`&`)
+
+Κρατάει **μόνο τα κοινά**.
+
+```ts
+type Set1 = "A" | "B" | "C";
+type Set2 = "B" | "C" | "D";
+
+type IntersectionType = Set1 & Set2;
+// "B" | "C"
+```
+
+
+
+## Conditional Types
+
+Ελέγχει αν κάτι **ανήκει σε κάποιο type**.
+
+```ts
+type CanAcceptProp<Props, Prop> =
+  Prop extends keyof Props ? true : false;
+
+type ButtonProps = {
+  size: string;
+  color: string;
+};
+
+type Test1 = CanAcceptProp<ButtonProps, "color">;
+// true
+
+type Test2 = CanAcceptProp<ButtonProps, "icon">;
+// false
+```
+
+
+
+## Index Signature
+
+Ορίζει **τύπο για keys και values**.
+
+```ts
+type ObjectWithStringKeys = {
+  [key: string]: number | string;
+};
+```
+
+
+
+## Mapped Types
+
+Δημιουργεί keys από union.
+
+```ts
+type Obj = {
+  A: number;
+  B: number;
+  C: number;
+};
+
+type Mask = {
+  [K in keyof Obj]: boolean;
+};
+
+// {
+//   A: boolean
+//   B: boolean
+//   C: boolean
+// }
+```
+
+
+
+## `Pick`
+
+Δημιουργεί νέο type **κρατώντας μόνο κάποια keys**.
+
+```ts
+type Obj = {
+  one: number;
+  two: number;
+  three: number;
+};
+
+type NewType = Pick<Obj, "one" | "three">;
+
+// {
+//   one: number
+//   three: number
+// }
+```
+
+
+
+## `Omit`
+
+Δημιουργεί νέο type **αφαιρώντας κάποια keys**.
+
+```ts
+type Obj = {
+  one: number;
+  two: number;
+  three: number;
+  four: number;
+};
+
+type NewType = Omit<Obj, "one" | "three">;
+
+// {
+//   two: number
+//   four: number
+// }
+```
+
