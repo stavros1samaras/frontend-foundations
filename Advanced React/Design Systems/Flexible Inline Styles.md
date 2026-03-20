@@ -19,17 +19,20 @@ const Div = ({ children, className, ...props }) => {
 // className → for responsive classes, media queries, Tailwind, etc.
 // props → for fixed styles that don't change with screen size
 
-// Grid: display grid
-export const Grid = (props) => <Div display="grid" {...props} />;
+// Grid: display grid with default responsive columns
+export const Grid = ({ className = "", ...props }) => {
+  const defaultStyles= "sm:grid-cols-1 md:grid-cols-3"; // default responsive columns
+  const combinedStyles = `${defaultStyles} ${className}`.trim();
+  return <Div display="grid" className={combinedStyles} {...props} />;
+};
 
 // Flex: display flex
 export const Flex = (props) => <Div display="flex" {...props} />;
 ```
 ## Usage Examples:
 ```jsx
-
+// Grid with default responsive columns (1 column small, 3 medium+)
 <Grid 
-  className="sm:grid-cols-1 md:grid-cols-3" 
   gap="10px"
   padding="20px" 
   backgroundColor="#f0f0f0" 
@@ -37,6 +40,18 @@ export const Flex = (props) => <Div display="flex" {...props} />;
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>
+</Grid>
+
+{/* Grid with user override of columns */}
+<Grid 
+  className="sm:grid-cols-2 lg:grid-cols-4" // override default columns
+  gap="10px"
+  padding="20px"
+>
+  <div>Item A</div>
+  <div>Item B</div>
+  <div>Item C</div>
+  <div>Item D</div>
 </Grid>
 
 <Flex 
