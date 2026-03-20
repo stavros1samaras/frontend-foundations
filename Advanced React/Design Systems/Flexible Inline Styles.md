@@ -3,8 +3,10 @@
 A lightweight React component that allows passing any CSS property directly as a prop.
 
 ```jsx
-// Generic Box that applies all props as inline styles and className
-const Box = ({ children, className, ...props }) => {
+import React from "react";
+
+// Generic Div that applies all props as inline styles and className
+const Div = ({ children, className, ...props }) => {
   return (
     <div className={className} style={{ ...props }}>
       {children}
@@ -13,20 +15,39 @@ const Box = ({ children, className, ...props }) => {
 };
 
 // Aliases for convenience
-export const Grid = (props) => <Box display="grid" {...props} />;
-export const Flex = (props) => <Box display="flex" {...props} />;
-export const Section = (props) => <Box {...props} />;
 
-// Usage Examples:
+// className → for responsive classes, media queries, Tailwind, etc.
+// props → for fixed styles that don't change with screen size
 
-<Grid className="my-grid" gap="10px" padding="20px" backgroundColor="#f0f0f0">
+// Grid: display grid
+export const Grid = (props) => <Div display="grid" {...props} />;
+
+// Flex: display flex
+export const Flex = (props) => <Div display="flex" {...props} />;
+```
+## Usage Examples:
+```jsx
+
+<Grid 
+  className="sm:grid-cols-1 md:grid-cols-3" 
+  gap="10px"
+  padding="20px" 
+  backgroundColor="#f0f0f0" 
+>
   <div>Item 1</div>
   <div>Item 2</div>
+  <div>Item 3</div>
 </Grid>
 
-<Flex className="my-flex" gap="8px" justifyContent="center">
+<Flex 
+  className="flex-col md:flex-row justify-center" 
+  gap="8px" 
+  padding="16px" 
+  backgroundColor="#e0f7fa" 
+>
   <div>Item A</div>
   <div>Item B</div>
+  <div>Item C</div>
 </Flex>
 ```
 
