@@ -3,11 +3,13 @@
 A lightweight React component that allows passing any CSS property directly as a prop.
 
 ```jsx
-import React from "react";
-
-// Generic Box that applies all props as inline styles
-const Box = ({ children, ...props }) => {
-  return <div style={{ ...props }}>{children}</div>;
+// Generic Box that applies all props as inline styles and className
+const Box = ({ children, className, ...props }) => {
+  return (
+    <div className={className} style={{ ...props }}>
+      {children}
+    </div>
+  );
 };
 
 // Aliases for convenience
@@ -17,12 +19,12 @@ export const Section = (props) => <Box {...props} />;
 
 // Usage Examples:
 
-<Grid gap="10px" padding="20px" backgroundColor="#f0f0f0">
+<Grid className="my-grid" gap="10px" padding="20px" backgroundColor="#f0f0f0">
   <div>Item 1</div>
   <div>Item 2</div>
 </Grid>
 
-<Flex gap="8px" justifyContent="center">
+<Flex className="my-flex" gap="8px" justifyContent="center">
   <div>Item A</div>
   <div>Item B</div>
 </Flex>
