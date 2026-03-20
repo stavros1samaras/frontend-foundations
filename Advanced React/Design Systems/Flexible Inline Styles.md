@@ -11,8 +11,8 @@ const Box = ({ children, ...props }) => {
 };
 
 // Aliases for convenience
-export const Grid = (props) => <Box {...props} />;
-export const Flex = (props) => <Box {...props} />;
+export const Grid = (props) => <Box display="grid" {...props} />;
+export const Flex = (props) => <Box display="flex" {...props} />;
 export const Section = (props) => <Box {...props} />;
 
 // Usage Examples:
