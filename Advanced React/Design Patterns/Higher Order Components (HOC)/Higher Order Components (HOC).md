@@ -3,18 +3,6 @@
 📌 **What is this?**  
 The HOC pattern is a React technique where you take a component and "wrap" it in a function to add behavior or data. Instead of changing the component’s UI, the HOC adds logic and returns a new component.
 
-🤔 **Why use it?**  
-- Allows reuse of logic without changing the UI  
-- Can add logging, validation, auth checks, analytics, etc.  
-- Keeps the UI clean and separates concerns  
-- Makes it easy to extend multiple components with the same behavior  
-
-🧠 **Core Idea**  
-- Take a component as input  
-- Wrap the component in a function  
-- Add behavior or data  
-- Return a new component with the same UI but enhanced functionality  
-
 ⚙️ **Example**
 
 ```jsx
