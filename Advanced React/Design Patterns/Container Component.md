@@ -6,14 +6,6 @@ The **Container Component Pattern** is a design approach where a component (the 
 
 This separates **data logic** from **UI presentation**, improving modularity and reusability.
 
-## 🤔 Why use it?
-
-- Keeps UI components purely presentational
-- Handles data fetching, caching, or state in one place
-- Allows multiple child components to share the same data
-- Promotes clean separation of concerns
-- Easy to test and maintain
-
 ## 🧠 Core Idea
 
 - **Container component** (smart):
@@ -23,6 +15,12 @@ This separates **data logic** from **UI presentation**, improving modularity and
   - Receive data as props
   - Focus purely on rendering UI
 - Container passes data dynamically via props (e.g., using `React.cloneElement`)
+
+## ✅ When to use
+
+- When you want to **reuse the same data logic** across multiple different UIs
+- When you need a clean separation between **data concerns and rendering**
+- When building generic data-fetching wrappers that work with any child component
 
 ## ⚙️ Example
 
