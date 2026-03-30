@@ -45,6 +45,8 @@ React errors happen during rendering, lifecycle methods, or in components.
 - **Error Boundaries** (for class components)
   - Catch render, lifecycle, and child component errors.
 
+## Example
+
 ```jsx
 export class ErrorBoundary extends React.Component {
   state = { hasError: false };
@@ -64,5 +66,13 @@ export class ErrorBoundary extends React.Component {
 
     return this.props.children;
   }
+}
+
+function App() {
+  return (
+    <ErrorBoundary fallback={<h1>something went wrong</h1>}>
+      <MyComponent />
+    </ErrorBoundary>
+  );
 }
 ```
