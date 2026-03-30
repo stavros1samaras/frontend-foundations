@@ -13,6 +13,65 @@
   }
   ```
 
+## ✅ Advantages
+
+- Strong type safety — generics (`T`) preserve the wrapped component’s props
+- Prevents prop collisions using `Omit` (consumer cannot override injected props)
+- Safer DX — TypeScript catches misuse at compile time
+- Clear contract between HOC and wrapped component (what is injected vs expected)
+- Scales better than plain HOCs in large codebases with strict typing
+
+---
+
+## ❌ Disadvantages
+
+- More complex syntax — harder to understand for beginners
+- Type definitions can become verbose and harder to maintain
+- Requires type casting (`as T`) in some cases → slight escape hatch from safety
+- Debugging type errors can be non-trivial
+- Same architectural downsides as HOCs (wrapper nesting, client-only in Next.js)
+
+---
+
+## 🕐 When to Use
+
+- When building HOCs in a **TypeScript codebase**
+- When you need to **inject props safely** without allowing overrides
+- When multiple developers consume the same HOC (prevent misuse)
+- When correctness and type guarantees are more important than simplicity
+
+---
+
+## 💼 Use Cases
+
+- Injecting controlled props (e.g. `x`, `onMouseMove`, `user`, `theme`) safely
+- Building reusable HOCs in design systems or shared libraries
+- Preventing consumers from overriding internal logic props
+- Complex UI behaviors (mouse tracking, scroll position, viewport data)
+
+---
+
+## ⚠️ Caveats
+
+- **Always use `Omit` for injected props** — prevents accidental overrides
+- **Be careful with `as T` casting** — can hide real type issues if misused
+- **Keep injected props minimal** — too many increases complexity
+- **Prefer hooks when possible** — simpler and easier to type
+- **Next.js App Router** — still forces `"use client"` when using HOCs
+
+---
+
+## 📊 Pattern Metrics
+
+| Metric               | Rating                                                      |
+| -------------------- | ----------------------------------------------------------- |
+| Developer Ergonomics | Medium — safer but more complex syntax                      |
+| Flexibility          | High — strong typing with controlled prop injection         |
+| Performance          | Medium — same overhead as standard HOCs                     |
+| Testability          | High — types make behavior easier to validate               |
+| Reusability          | High — reusable and safe across large codebases             |
+| Scalability          | Medium — better than plain HOCs, but still limited vs hooks |
+
 ## withMouseMoveX
 
 ```tsx

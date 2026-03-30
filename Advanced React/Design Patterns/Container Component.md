@@ -16,19 +16,70 @@ This separates **data logic** from **UI presentation**, improving modularity and
   - Focus purely on rendering UI
 - Container passes data dynamically via props (e.g., using `React.cloneElement`)
 
-## ✅ When to use
+## ✅ Advantages
 
-- When you want to **reuse the same data logic** across multiple different UIs
-- When you need a clean separation between **data concerns and rendering**
-- When building generic data-fetching wrappers that work with any child component
+- Clear separation of concerns — container handles data/logic, children handle presentation
+- Reusable data-fetching or state logic across multiple components
+- Improves maintainability and modularity in large apps
+- Children remain simple and focused on UI
+- Works with React and Next.js for both client-side and server-side data patterns
+
+---
+
+## ❌ Disadvantages
+
+- Slight overhead from additional wrapper components
+- Can become verbose for simple components or one-off cases
+- May need careful handling of `React.cloneElement` or dynamic prop injection
+- Debugging prop injection issues can be tricky
+- Contextual state sharing is less direct than with hooks or context
+
+---
+
+## 🕐 When to Use
+
+- When you need **shared data fetching or state logic** for multiple UIs
+- When separating **logic from presentation** improves clarity
+- When building **generic container components** usable with any child
+- When you want to centralize side effects (API calls, caching)
+
+---
+
+## 💼 Use Cases
+
+- API data fetching for dashboards or forms
+- Wrapping multiple presentational components with the same resource
+- Stateful wrappers for local storage, session data, or Redux selectors
+- Generic list/detail patterns where children only render UI
+
+---
+
+## ⚠️ Caveats
+
+- Avoid over-engineering for simple UI — sometimes direct props suffice
+- React.cloneElement requires valid React elements; skip non-elements
+- Be aware of unnecessary re-renders if container updates frequently
+- For Next.js server components, ensure data fetching is compatible with server/client boundaries
+- Testing containers may require mocking async calls
+
+---
+
+## 📊 Pattern Metrics
+
+| Metric               | Rating                                                  |
+| -------------------- | ------------------------------------------------------- |
+| Developer Ergonomics | High — separation makes components easy to reason about |
+| Flexibility          | High — container can wrap any child component           |
+| Performance          | Medium — extra render and prop injection overhead       |
+| Testability          | High — logic can be tested independently from UI        |
+| Reusability          | High — containers can be reused across different UIs    |
+| Scalability          | Medium — works well, but complex prop mappings can grow |
 
 ## ⚙️ Example
 
 ```jsx
-import React, { useState, useEffect } from "react";
-
 /* ---------- App ---------- */
-function App() {
+export default function App() {
   return (
     <>
       <DataSource getData={() => fetchData("/users/1")} resourceName="user">
@@ -44,8 +95,6 @@ function App() {
     </>
   );
 }
-
-export default App;
 
 /* ---------- Container Component ---------- */
 export const DataSource = ({ getData = () => {}, resourceName, children }) => {

@@ -11,15 +11,64 @@ The Compound Component pattern allows you to build a parent component with multi
 - Children are exported as **static properties** of the parent (`Select.Option`, etc.)
 - Consumers compose children freely in any order inside the parent
 
-## ✅ When to use
+## ✅ Advantages
 
-- When multiple related subcomponents need to **share state** without exposing it to the consumer
-- When you want a **flexible, composable API** — consumers control layout and order
-- Classic use cases: `<Select>`, `<Tabs>`, `<Accordion>`, `<Modal>` with header/body/footer slots
+- Enables **shared state** across related subcomponents without prop drilling
+- Flexible and composable API — consumers control layout and order freely
+- Keeps related components **grouped and maintainable**
+- Works seamlessly with both React and Next.js client components
+- Encourages **separation of concerns** — parent handles state, children handle presentation
+
+---
+
+## ❌ Disadvantages
+
+- Overhead for simple components — plain props may be simpler
+- Extra boilerplate for creating context and subcomponents
+- Slight performance cost if many nested consumers re-render frequently
+- Requires understanding of React Context API
+- Less straightforward for newcomers compared to single component props
+
+---
+
+## 🕐 When to Use
+
+- When multiple related subcomponents need to **share state** internally
+- When you want to provide a **flexible, composable API**
+- When building UI components with **slots** (header/body/footer)
+- When you want to **avoid prop drilling** across nested components
+
+---
+
+## 💼 Use Cases
+
+- Tabs: `<Tabs><Tabs.Tab>…</Tabs.Tab></Tabs>`
+- Select / Dropdowns with options: `<Select><Select.Option>…</Select.Option></Select>`
+- Accordions: `<Accordion><Accordion.Panel>…</Accordion.Panel></Accordion>`
+- Modals with separate header/body/footer slots
+- Cards or panels with configurable sections
+
+---
 
 ## ⚠️ Caveats
 
-- Can become over-engineered for simple components — plain props are fine for shallow trees
+- Can be **over-engineered for simple components**
+- React Context updates can trigger re-renders on all consumers
+- Requires careful API design for subcomponents
+- Not ideal if the component tree is shallow and simple props suffice
+
+---
+
+## 📊 Pattern Metrics
+
+| Metric               | Rating                                                                             |
+| -------------------- | ---------------------------------------------------------------------------------- |
+| Developer Ergonomics | High — clear separation of state and presentation                                  |
+| Flexibility          | High — consumers can compose children freely                                       |
+| Performance          | Medium — Context updates may trigger multiple re-renders                           |
+| Testability          | High — parent and children can be tested separately                                |
+| Reusability          | High — subcomponents are reusable across projects                                  |
+| Scalability          | Medium — works well for moderate complexity, may need optimization for large trees |
 
 ## ⚙️ Example
 
