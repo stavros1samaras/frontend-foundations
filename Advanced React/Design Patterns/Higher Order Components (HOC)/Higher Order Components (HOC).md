@@ -1,27 +1,45 @@
 # Higher-Order Component (HOC)
 
-📌 **What is this?**  
-The HOC pattern is a React technique where you take a component and "wrap" it in a function to add behavior or data. Instead of changing the component’s UI, the HOC adds logic and returns a new component.
+## 📌 What is this?
+
+A **Higher-Order Component** is a function that takes a component and returns a new component with added or modified behavior. It is a pattern derived from higher-order functions in functional programming.
+
+```ts
+const EnhancedComponent = withSomething(WrappedComponent);
+```
+
+HOCs do not modify the original component — they wrap it, composing behavior through the component tree.
+
+## 🧠 Core Idea
+
+- A HOC is a **pure function**: same input always produces the same enhanced component
+- It injects props, state, or lifecycle behavior into the wrapped component
+- The wrapped component remains unaware of the enhancement
+
+## ✅ When to use
+
+- When you need to **reuse cross-cutting logic** across multiple components:
+  - logging
+  - analytics
+  - error boundaries
+- When you want to **inject props or behavior** without modifying the original component
+
+---
 
 ⚙️ **Example**
 
 ```jsx
-import { checkProps } from "./components/check-props";
-import { UserInfo } from "./components/user-info";
-
 /* ---------- Wrap Component with HOC ---------- */
 const UserInfoWrapper = checkProps(UserInfo);
 
 /* ---------- App ---------- */
-function App() {
+export default function App() {
   return (
     <>
       <UserInfoWrapper propA="test1" blabla={{ a: 1, age: 23 }} />
     </>
   );
 }
-
-export default App;
 
 /* ---------- Generic HOC Function ---------- */
 export const checkProps = (Component) => {
@@ -30,49 +48,4 @@ export const checkProps = (Component) => {
     return <Component {...props} />; // returns the original component with props
   };
 };
-```
-
-⚙️ **Example**
-
-```jsx
-import { LargeRedButton, SmallButton } from "./components/partial";
-
-function App() {
-  return (
-    <>
-      <SmallButton text={"I am small!"}/>
-      <LargeRedButton text="I am large and Red"/>
-    </>
-  );
-}
-
-export default App;
------------------------------------------------
-
-export const partial = (Component, partialProps) => {
-  return (props) => {
-    return <Component {...partialProps} {...props} />;
-  };
-};
-
-export const Button = ({ size, color, text, ...props }) => {
-  return (
-    <button
-      style={{
-        fontSize: size === "large" ? "25px" : "16px",
-        backgroundColor: color,
-      }}
-    >
-      {text}
-    </button>
-  );
-};
-
-export const SmallButton = partial(Button, { size: "small" });
-
-export const LargeRedButton = partial(Button, {
-  size: "large",
-  color: "crimson",
-});
-
 ```

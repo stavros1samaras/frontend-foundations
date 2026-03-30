@@ -1,10 +1,8 @@
-# Higher-Order Component (HOC) Pattern with TypeScript
-
+# Higher-Order Component (HOC) with TypeScript
 
 ## Key TypeScript Concepts
 
 - `T extends {}`: This is a **generic type parameter**. It represents the props of the component that the HOC wraps. Using generics ensures **type safety**, so the wrapped component still gets its own props correctly typed.
-  
 - `Omit<T, keyof DisplayMousePositionProps>`: This is sometimes called the **TUF pattern** (Type Utility Function). It removes from `T` all keys that are provided by the HOC (`x` and `onMouseMove`) so that the user of the HOC **cannot accidentally overwrite these props**.
 
 - `DisplayMousePositionProps` is the type of props injected by the HOC, in this case:
@@ -16,9 +14,10 @@
   ```
 
 ## withMouseMoveX
+
 ```tsx
 export function withMouseMoveX<T extends {}>(
-  Component: React.ComponentType<DisplayMousePositionProps>
+  Component: React.ComponentType<DisplayMousePositionProps>,
 ) {
   return (props: Omit<T, keyof DisplayMousePositionProps>) => {
     const [x, setX] = useState(0);
@@ -33,6 +32,7 @@ export function withMouseMoveX<T extends {}>(
 ```
 
 ## App
+
 ```tsx
 function App() {
   const Wrapper = withMouseMoveX(DisplayMousePosition);
@@ -44,6 +44,7 @@ function App() {
   );
 }
 ```
+
 ```jsx
 <MouseDisplayWithColor color="red" />; // ✅ Works, 'color' passes correctly
 <BrokenComponent x={50} />; // ❌ TypeScript prevents overwriting `x`
