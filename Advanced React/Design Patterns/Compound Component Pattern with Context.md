@@ -4,19 +4,22 @@
 
 The Compound Component pattern allows you to build a parent component with multiple subcomponents that communicate via React Context. This pattern keeps related components together and allows shared state or props without prop drilling.
 
-## 🤔 Why use it?
-
-- Groups related components (Header, Body, Footer) logically
-- Shares state easily between subcomponents using Context
-- Keeps UI flexible and composable
-- Clean API for consumers
-
 ## 🧠 Core Idea
 
-- Create a parent component with a Context provider
-- Build child components that consume Context
-- Export child components as properties of the parent
-- Users can compose the children in any order inside the parent
+- Parent creates a **Context provider** and manages shared state
+- Child subcomponents consume that context with `useContext`
+- Children are exported as **static properties** of the parent (`Select.Option`, etc.)
+- Consumers compose children freely in any order inside the parent
+
+## ✅ When to use
+
+- When multiple related subcomponents need to **share state** without exposing it to the consumer
+- When you want a **flexible, composable API** — consumers control layout and order
+- Classic use cases: `<Select>`, `<Tabs>`, `<Accordion>`, `<Modal>` with header/body/footer slots
+
+## ⚠️ Caveats
+
+- Can become over-engineered for simple components — plain props are fine for shallow trees
 
 ## ⚙️ Example
 
