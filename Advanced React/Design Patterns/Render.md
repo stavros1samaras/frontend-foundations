@@ -6,29 +6,23 @@ The **Render Props Pattern** is a design approach where a component provides dat
 
 This separates **data/logic** from **presentation**, similar to container components, but gives more control to the consumer via a callback.
 
-
-## 🤔 Why use it?
-
-- Provides maximum flexibility for rendering  
-- Allows different presentations of the same data  
-- Keeps data fetching or state logic separate from UI  
-- Encourages composable and reusable patterns
-
-
 ## 🧠 Core Idea
 
-- The **data component** fetches or manages state  
-- Instead of children elements, it exposes a **render function**  
-- The consumer passes a function that receives the data and returns JSX  
-- This makes the component reusable for multiple presentations
+- The component manages state/fetching internally
+- Instead of rendering JSX itself, it calls `render(data)` and returns the result
+- The consumer decides what to render — the component only controls the data
+
+## ✅ When to use
+
+- When multiple components need the **same data logic but different UIs**
+- When you want the consumer to have **explicit, named control** over rendering (vs. the implicit `children` function)
+- Good for generic wrappers: data fetching, mouse position tracking, resize observers, etc.
 
 ## ⚙️ Example
 
 ```jsx
-import React, { useState, useEffect } from "react";
-
 /* ---------- App ---------- */
-function App() {
+export default function App() {
   return (
     <DataSourceWithRenderProps
       getData={() => fetchData("/users/1")}
@@ -36,8 +30,6 @@ function App() {
     />
   );
 }
-
-export default App;
 
 /* ---------- Generic Render Props Component ---------- */
 export const DataSourceWithRenderProps = ({ getData = () => {}, render }) => {
@@ -52,3 +44,4 @@ export const DataSourceWithRenderProps = ({ getData = () => {}, render }) => {
 
   return render(resource);
 };
+```

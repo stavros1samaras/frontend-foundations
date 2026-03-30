@@ -1,26 +1,28 @@
 # Event / Observer Pattern in React (Minimal Tailwind)
 
-📌 **What is this?**  
-The Event (or Observer) Pattern allows components to communicate without direct parent-child relationships. Components emit and listen to events via a central emitter, decoupling sender and receiver.
+## 📌 What is this?
 
-🧠 **Core Idea**  
-- Create a **global event emitter**  
-- Components **emit events** without knowing listeners  
-- Components **subscribe** to events to react  
-- Clean up subscriptions to avoid memory leaks  
+The **Event / Observer Pattern** lets components communicate without any direct parent-child relationship. A global event emitter acts as the message bus — components emit events without knowing who's listening, and listeners react without knowing who emitted.
 
-⚙️ **Example**
+## 🧠 Core Idea
+
+- A **global emitter** (e.g. `mitt`) is created once and shared across the app
+- **Emitters** fire named events with optional payload — no coupling to receivers
+- **Subscribers** listen for events and react, cleaning up in the `useEffect` return
+  ⚙️ **Example**
+
+## ✅ When to use
+
+- When components are **far apart in the tree** and connecting them via props or context would be awkward
+- For truly **decoupled, cross-cutting events** (e.g. notifications, analytics, keyboard shortcuts)
+- When you need lightweight pub/sub without pulling in a full state manager
 
 ```jsx
 /* ---------- App.js ---------- */
-import mitt from "mitt";
-import Buttons from "./components/Buttons";
-import Counter from "./components/Counter";
-
 /* Global emitter */
 export const emitter = mitt();
 
-function App() {
+export default function App() {
   return (
     <div className="p-2 space-y-2">
       <Buttons />
@@ -29,11 +31,8 @@ function App() {
   );
 }
 
-export default App;
 /* ---------- Buttons.js ---------- */
-import { emitter } from "../App";
-
-const Buttons = () => {
+export default function Buttons () {
   const onIncrement = () => emitter.emit("increment");
   const onDecrement = () => emitter.emit("decrement");
 
@@ -45,13 +44,8 @@ const Buttons = () => {
   );
 };
 
-export default Buttons;
-
 /* ---------- Counter.js ---------- */
-import { useEffect, useState } from "react";
-import { emitter } from "../App";
-
-const Counter = () => {
+export default function Counter () {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -69,5 +63,4 @@ const Counter = () => {
 
   return <div className="font-bold">Count: {count}</div>;
 };
-
-export default Counter;
+```

@@ -6,35 +6,30 @@ The Function as Children is similar to Render Props, but instead of passing a `r
 
 This keeps the JSX cleaner and avoids defining a separate `render` prop.
 
-## 🤔 Why use it?
-
-- Simplifies the API by using the `children` prop  
-- Keeps JSX concise and readable  
-- Separates data/logic from presentation  
-- Fully composable and reusable
-
 ## 🧠 Core Idea
 
-- The component fetches or manages state  
-- Passes the data to its **child function**  
-- The child function returns the UI based on that data  
+- The component fetches or manages state
+- Passes the data to its **child function**
+- The child function returns the UI based on that data
 - Eliminates the need for a dedicated `render` prop
+
+## ✅ When to use
+
+- When you want to share behavior (mouse position, scroll, data fetching) across - components with different UIs
+- When the consumer needs full control over rendering — more explicit than HOCs
+- When you prefer a named prop over the children convention (see: Function as Children)
 
 ## ⚙️ Example
 
 ```jsx
-import React, { useState, useEffect } from "react";
-
 /* ---------- App ---------- */
-function App() {
+export default function App() {
   return (
     <DataSourceWithChildren getData={() => fetchData("/users/1")}>
       {(resource) => <UserInfo user={resource} />}
     </DataSourceWithChildren>
   );
 }
-
-export default App;
 
 /* ---------- Generic Component (children as function) ---------- */
 export const DataSourceWithChildren = ({ getData = () => {}, children }) => {
@@ -49,3 +44,4 @@ export const DataSourceWithChildren = ({ getData = () => {}, children }) => {
 
   return children(resource); // pass data to child function
 };
+```
