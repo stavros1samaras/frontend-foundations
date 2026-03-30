@@ -9,32 +9,22 @@ In React, **controlled** and **uncontrolled** components are patterns for handli
 
 This distinction affects flexibility, reusability, and how you handle user input.
 
-
-## 🤔 Why use it?
-
-- **Uncontrolled Components**
-  - Quick to implement
-  - Minimal React boilerplate
-  - Useful when you don’t need to track input state continuously
-
-- **Controlled Components**
-  - Full control over input state
-  - Easy to validate or manipulate input dynamically
-  - Simplifies integration with other stateful logic
-
-
 ## 🧠 Core Idea
 
 - **Uncontrolled:** Let the browser manage state. Access input values with `refs` only when needed.
 - **Controlled:** Keep input state in React, updating on every change, giving full control over the UI.
+
+## ✅ When to use
+
+- Use **uncontrolled** when you only need the value on submit and don't need to track it continuously
+- Use **controlled** when you need real-time validation, dynamic input manipulation, or integration with other stateful logic
+- Prefer **controlled** for most form-heavy UIs where predictability matters
 
 ## ⚙️ Examples
 
 ### Uncontrolled Form
 
 ```jsx
-import React, { createRef } from "react";
-
 export const UncontrolledForm = () => {
   const nameRef = createRef();
   const ageRef = createRef();
@@ -47,20 +37,17 @@ export const UncontrolledForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input ref={nameRef} type="text"/>
-      <input ref={ageRef}  type="number"/>
-      <button type="submit">
-        Submit
-      </button>
+      <input ref={nameRef} type="text" />
+      <input ref={ageRef} type="number" />
+      <button type="submit">Submit</button>
     </form>
   );
 };
 ```
 
 ### Controlled Form with Validation
-```jsx
-import React, { useState, useEffect } from "react";
 
+```jsx
 export const ControlledForm = () => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -83,17 +70,21 @@ export const ControlledForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       {error && <p>{error}</p>}
-      <input name="name" type="text" placeholder="Enter name"
+      <input
+        name="name"
+        type="text"
+        placeholder="Enter name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <input name="age" type="number" placeholder="Enter age"
+      <input
+        name="age"
+        type="number"
+        placeholder="Enter age"
         value={age}
         onChange={(e) => setAge(e.target.value)}
       />
-      <button type="submit">
-        Submit
-      </button>
+      <button type="submit">Submit</button>
     </form>
   );
 };
