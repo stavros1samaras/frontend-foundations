@@ -1,4 +1,4 @@
-<img width="1173" height="896" alt="Gemini_Generated_Image_urri69urri69urri" src="https://github.com/user-attachments/assets/5fc9ec06-e163-4211-ae58-1835ce64fb0a" />
+<img width="1002" height="973" alt="εικόνα" src="https://github.com/user-attachments/assets/a9603b32-2878-4055-9331-081af7b7b2f8" />
 
 
 
