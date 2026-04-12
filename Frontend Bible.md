@@ -49,3 +49,31 @@
   - Promises
   - Async/Await
 
+---
+
+# React Internals
+
+## Architecture
+- React Fiber architecture
+- Scheduler / prioritization
+- Concurrent rendering (React 18+)
+- Rendering phase (pure) vs Commit phase (side effects)
+
+### Rendering Model
+- Component render / Mount / Update / Unmount
+- Re-renders (on state/props change)
+- Virtual DOM
+- Reconciliation (diffing algorithm)
+- Efficient DOM updates
+
+### Events System
+- Synthetic events
+- Event handlers (onClick etc.)
+- Cleanup functions
+
+### State Mechanics
+- Batching updates
+- Async state updates
+- State drives UI
+
+https://medium.com/@canpolat.dev/deep-dive-into-reacts-internal-architecture-from-virtual-dom-to-fiber-08dcf66b309d
