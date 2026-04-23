@@ -5,36 +5,57 @@
 
 # Browser
 
-## Runtime (V8, SpiderMonkey, Node.js, ...)
-  - Event Loop
-  - JIT Compilation
-  - Call Stack
-  - Execution Context
-  - Heap
-  - Task Queue (Macrotasks)
-  - Microtask Queue
-  - Garbage Collection
+## Browser Runtime
 
-## Rendering Engine (Blink, WebKit, Gecko)
-- DOM Tree
-- CSSOM Tree
-- Render Tree
-- Accessibility Tree
-- Layout (Reflow) 
-- Paint 
-- Compositing 
+- Event Loop
+- Microtask
+- Macrotask
+
+## JS Engine (V8)
+
+- Call Stack
+- Heap Memory
+- GC
+- Parser
+- Interpreter
+- Compiler
 
 ## Web APIs
-- DOM API
+
 - Fetch API
-- Web Storage API
-- Geolocation API
-- Canvas API
-- WebSockets API
-- Notifications API
-- Web Audio API
-- Web Workers API
-- Crypto API
+- Storage API
+- Events API
+- DOM API
+
+## Network Application Layer
+
+- HTTPS
+- DNS
+- WebSocket
+
+## Rendering Engine (Blink)
+
+- HTML Parser
+- CSS Parser
+- Layout
+- Paint
+
+## Memory
+
+- localStorage
+- sessionStorage
+- Cache (Cache API)
+- IndexedDB
+- Cookies
+
+## Trees
+
+- DOM tree
+- CSSOM tree
+- Render tree
+- Accessibility tree
+- Layer tree
+- BOM tree
 
 # Javascript
 
