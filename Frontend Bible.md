@@ -39,15 +39,17 @@
 # Javascript
 
 ## Fundamentals
-  - Closures
-  - Scope Chain
-  - Hoisting
-  - this Binding
-  - Prototypal Inheritance
-  - Event Bubbling/Capturing
-  - Callbacks
-  - Promises
-  - Async/Await
+- Variables
+- Types
+- Scope & Hoisting
+- Functions
+- Callbacks
+- Events
+- Error Handling
+- try / catch / finally
+- Promises
+- async / await
+- Classes
 
 ---
 
@@ -77,3 +79,11 @@
 - State drives UI
 
 https://medium.com/@canpolat.dev/deep-dive-into-reacts-internal-architecture-from-virtual-dom-to-fiber-08dcf66b309d
+
+# Framework
+- Routing
+- Data Fetching
+- Error Handling
+- Forms
+- Rendering strategies
+- Bundling
