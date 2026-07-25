@@ -5,6 +5,9 @@
   the canonical version of a page when multiple URLs exist, the supported languages, and whether a page should be indexed or ignored.
 
   - Guides
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta#attributes
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name#value
+    - https://nextjs.org/docs/app/getting-started/metadata-and-og-images#default-fields
   - Tools
 
 - **Semantic HTML**
@@ -12,6 +15,7 @@
   navigation areas, content sections, the hierarchy of headings, and the meaning of images and links, resulting in a more accurate understanding of the page structure.
 
   - Guides
+    - https://www.semrush.com/blog/semantic-html5-guide/
   - Tools
 
 - **Technical SEO**
@@ -25,6 +29,7 @@
   > Recommendations and best practices by search engines that are not required for indexing, but help search engines better understand, trust, and rank websites.
 
   - Guides
+    - https://developers.google.com/search/docs/fundamentals/seo-starter-guide
   - Tools
 
 - **Structured Data**
@@ -33,4 +38,7 @@
   This also allows Google to understand connections between entities (e.g., who wrote an article or which organization published it) and potentially display rich results.
 
   - Guides
+    - https://nextjs.org/docs/app/guides/json-ld
   - Tools
+    - https://search.google.com/test/rich-results
+    - https://validator.schema.org/
